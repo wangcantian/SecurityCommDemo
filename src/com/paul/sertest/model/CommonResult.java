@@ -1,5 +1,7 @@
 package com.paul.sertest.model;
 
+import com.paul.sertest.utils.GsonUtil;
+
 /**
  * 标准数据返回格式
  * @author XY
@@ -76,4 +78,12 @@ public class CommonResult {
 		this.token = token;
 	}
 	
+	/**
+	 * 请求返回数据处理
+	 * @param commonResult
+	 * @return
+	 */
+	public String general() {
+		return GsonUtil.objectToJsonStr(this);
+	}
 }

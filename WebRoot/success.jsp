@@ -1,15 +1,14 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@page import="io.jsonwebtoken.Claims"%>
+<%@page import="com.paul.sertest.model.SubjectModel"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	SubjectModel subjectModel = (SubjectModel)request.getAttribute("tokensub");
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>">
-    
-    <title>My JSP 'index.jsp' starting page</title>
+    <title></title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -21,6 +20,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my JSP page. <br>
+    	验证通过<br/>
+    	<%if (subjectModel != null) { %>
+    		用户ID为： <%=subjectModel.getUid() %>
+    		用户类型： <%=subjectModel.getUty() %>
+    	<%} %>
+    
   </body>
 </html>

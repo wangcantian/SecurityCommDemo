@@ -2,18 +2,8 @@ package com.paul.sertest;
 
 import com.paul.sertest.config.Constant;
 import com.paul.sertest.model.CommonResult;
-import com.paul.sertest.utils.GsonUtil;
 
 public class ResponseMgr {
-	
-	/**
-	 * 请求返回数据处理
-	 * @param commonResult
-	 * @return
-	 */
-	public static String general(CommonResult commonResult) {
-		return GsonUtil.objectToJsonStr(commonResult);
-	}
 	
 	/**
 	 * 成功请求不带数据
@@ -21,7 +11,7 @@ public class ResponseMgr {
 	 */
 	public static String success() {
 		CommonResult commonResult = new CommonResult(Constant.RESCODE_SUCCESS, "success");
-		return general(commonResult);
+		return commonResult.general();
 	}
 	
 	/**
@@ -30,8 +20,8 @@ public class ResponseMgr {
 	 * @return
 	 */
 	public static String successWithData(Object data) {
-		CommonResult commonResult = new CommonResult(Constant.RESCODE_SUCCESS_MSG, data, "success");
-		return general(commonResult);
+		CommonResult commonResult = new CommonResult(Constant.RESCODE_SUCCESS_DATA, data, "success");
+		return commonResult.general();
 	}
 	
 	/**
@@ -40,7 +30,7 @@ public class ResponseMgr {
 	 */
 	public static String err() {
 		CommonResult commonResult = new CommonResult(Constant.RESCODE_EXCEPTION, "请稍后再试");
-		return general(commonResult);
+		return commonResult.general();
 	}
 
 	/**
@@ -49,8 +39,8 @@ public class ResponseMgr {
 	 * @return
 	 */
 	public static String errWhitData(Object data) {
-		CommonResult commonResult = new CommonResult(Constant.RESCODE_EXCEPTION_MSG, data, "请稍后再试");
-		return general(commonResult);
+		CommonResult commonResult = new CommonResult(Constant.RESCODE_EXCEPTION_DATA, data, "请稍后再试");
+		return commonResult.general();
 	}
 	
 	/**
@@ -59,8 +49,8 @@ public class ResponseMgr {
 	 * @return
 	 */
 	public static String errWhitData(String msg, Object data) {
-		CommonResult commonResult = new CommonResult(Constant.RESCODE_EXCEPTION_MSG, data, msg);
-		return general(commonResult);
+		CommonResult commonResult = new CommonResult(Constant.RESCODE_EXCEPTION_DATA, data, msg);
+		return commonResult.general();
 	}
 	
 	/**
@@ -69,7 +59,7 @@ public class ResponseMgr {
 	 */
 	public static String noLogin() {
 		CommonResult commonResult = new CommonResult(Constant.RESCODE_NOLOGIN, "用户未登录");
-		return general(commonResult);
+		return commonResult.general();
 	}
 	
 	/**
@@ -78,7 +68,7 @@ public class ResponseMgr {
 	 */
 	public static String noExist() {
 		CommonResult commonResult = new CommonResult(Constant.RESCODE_NOEXIST, "结果为空");
-		return general(commonResult);
+		return commonResult.general();
 	}
 	
 	/**
@@ -87,6 +77,15 @@ public class ResponseMgr {
 	 */
 	public static String noAuth() {
 		CommonResult commonResult = new CommonResult(Constant.RESCODE_NOAUTH, "拒绝授权");
-		return general(commonResult);
+		return commonResult.general();
+	}
+	
+	/**
+	 * 登录过期
+	 * @return
+	 */
+	public static String loginExpire() {
+		CommonResult commonResult = new CommonResult(Constant.RESCODE_LOGINEXPIRE, "登录过期");
+		return commonResult.general();
 	}
 }

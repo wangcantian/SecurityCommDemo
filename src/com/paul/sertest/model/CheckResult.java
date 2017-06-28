@@ -1,5 +1,7 @@
 package com.paul.sertest.model;
 
+import io.jsonwebtoken.Claims;
+
 /**
  * 验证结果模型
  * @author XY
@@ -9,9 +11,9 @@ public class CheckResult {
 
 	private int errCode;
 	
-	private String errMsg;
-	
 	private boolean success;
+	
+	private Claims claims;
 
 	public int getErrCode() {
 		return errCode;
@@ -21,20 +23,20 @@ public class CheckResult {
 		this.errCode = errCode;
 	}
 
-	public String getErrMsg() {
-		return errMsg;
-	}
-
-	public void setErrMsg(String errMsg) {
-		this.errMsg = errMsg;
-	}
-
 	public boolean isSuccess() {
 		return success;
 	}
 
 	public void setSuccess(boolean success) {
 		this.success = success;
+	}
+
+	public Claims getClaims() {
+		return claims;
+	}
+
+	public void setClaims(Claims claims) {
+		this.claims = claims;
 	}
 	
 }
